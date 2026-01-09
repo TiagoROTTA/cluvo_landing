@@ -16,9 +16,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'CLUVO - Join the Waiting List',
+  title: 'Cluvo',
   description: 'CLUVO is in private beta. Join our exclusive waitlist to turn customer conversations into investor-grade evidence and stop accepting polite lies.',
   viewport: 'width=device-width, initial-scale=1.0',
+  icons: {
+    icon: '/logo_tab.png',
+  },
 }
 
 export default function RootLayout({
@@ -33,6 +36,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" 
           rel="stylesheet" 
         />
+        <link rel="icon" href="/logo_tab.png" />
       </head>
       <body className={`${inter.variable} ${ibmPlexMono.variable} bg-background-light dark:bg-background-dark text-deep-jungle dark:text-gray-100 font-sans antialiased transition-colors duration-300`}>
         {children}

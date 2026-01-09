@@ -65,7 +65,7 @@ export default function Home() {
             alt="CLUVO Logo" 
             width={170} 
             height={42}
-            className="h-10 w-auto"
+            className="h-16 w-auto"
           />
         </div>
         <div className="hidden md:flex items-center gap-8 font-medium text-sm text-gray-600 dark:text-gray-300">
@@ -90,29 +90,24 @@ export default function Home() {
             </div>
             <h1 className="font-mono font-bold text-5xl sm:text-6xl leading-[1.1] text-deep-jungle dark:text-white mb-6">
               Don&apos;t Pitch a <span className="relative inline-block">Hallucination
-                <svg className="absolute w-full h-3 -bottom-1 left-0 text-soft-coral" preserveAspectRatio="none" viewBox="0 0 100 10">
-                  <path d="M0 5 Q 5 10 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5 T 70 5 T 80 5 T 90 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="3"></path>
+                <svg className="absolute w-full h-[15px] -bottom-2 left-0 text-soft-coral z-10" preserveAspectRatio="none" viewBox="0 0 200 12">
+                  <path d="M0 6c2.65 0 3.853 2.706 4.914 5.094C5.962 9.453 6.744 11 8 11c1.412 0 2.537-2.026 3.626-3.986C12.996 4.549 14.412 2 17 2c2.589 0 4.005 2.549 5.374 5.014C23.463 8.974 24.589 11 26 11c1.256 0 2.037-1.547 3.086-3.906C30.147 4.706 31.351 2 34 2c2.65 0 3.853 2.706 4.914 5.094C39.962 9.453 40.744 11 42 11c1.412 0 2.537-2.026 3.626-3.986C46.996 4.549 48.412 2 51 2c2.589 0 4.005 2.549 5.374 5.014C57.463 8.974 58.589 11 60 11c1.256 0 2.037-1.547 3.086-3.906C64.147 4.706 65.351 2 68 2c2.65 0 3.853 2.706 4.914 5.094C73.962 9.453 74.744 11 76 11c1.412 0 2.537-2.026 3.626-3.986C80.996 4.549 82.412 2 85 2c2.589 0 4.005 2.549 5.374 5.014C91.463 8.974 92.589 11 94 11c1.256 0 2.037-1.547 3.086-3.906C98.147 4.706 99.351 2 102 2c2.65 0 3.853 2.706 4.914 5.094C107.962 9.453 108.744 11 110 11c1.412 0 2.537-2.026 3.626-3.986C114.996 4.549 116.412 2 119 2c2.589 0 4.005 2.549 5.374 5.014C125.463 8.974 126.589 11 128 11c1.256 0 2.037-1.547 3.086-3.906C132.147 4.706 133.351 2 136 2c2.65 0 3.853 2.706 4.914 5.094C141.962 9.453 142.744 11 144 11c1.412 0 2.537-2.026 3.626-3.986C148.996 4.549 150.412 2 153 2c2.589 0 4.005 2.549 5.374 5.014C159.463 8.974 160.589 11 162 11c1.256 0 2.037-1.547 3.086-3.906C166.147 4.706 167.351 2 170 2c2.65 0 3.853 2.706 4.914 5.094C175.962 9.453 176.744 11 178 11c1.412 0 2.537-2.026 3.626-3.986C182.996 4.549 184.412 2 187 2c2.589 0 4.005 2.549 5.374 5.014C193.463 8.974 194.589 11 196 11c1.256 0 2.037-1.547 3.086-3.906C200.147 4.706 200 6 200 6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                 </svg>
               </span>. <br/>
-              Prove <span className="text-primary">Demand</span>.
+               <span className="text-primary">Prove Demand.</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-10 leading-relaxed max-w-lg">
-              CLUVO is in private beta. Join our exclusive waitlist to turn customer conversations into investor-grade evidence and stop accepting polite lies.
+              Turn customer conversations into <span className="font-bold italic">investor-grade evidence</span>
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 mb-10 max-w-md" id="waitlist">
-              <input 
-                className="flex-grow px-4 py-4 rounded bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 focus:ring-primary focus:border-primary font-mono text-sm" 
-                placeholder="Enter your work email" 
-                required 
-                type="email"
-              />
-              <button 
-                className="bg-primary hover:bg-primary-dark text-white dark:text-deep-jungle font-mono font-bold text-sm px-8 py-4 rounded shadow-lg hover:shadow-glow transition-all flex items-center justify-center gap-2 whitespace-nowrap" 
-                type="submit"
+            <div className="mb-10 max-w-md">
+              <a 
+                href="#coming-soon"
+                onClick={handleScrollToWaitlist}
+                className="inline-flex bg-primary hover:bg-primary-dark text-white dark:text-deep-jungle font-mono font-bold text-sm px-8 py-4 rounded shadow-lg hover:shadow-glow transition-all items-center justify-center gap-2 whitespace-nowrap"
               >
                 Join the Waiting List <span className="material-symbols-outlined text-lg">arrow_forward</span>
-              </button>
-            </form>
+              </a>
+            </div>
             <div className="mt-8">
               <p className="text-xs font-mono uppercase text-gray-400 mb-4 tracking-widest">Early traction from founders at</p>
               <div className="flex items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
@@ -132,7 +127,6 @@ export default function Home() {
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
                   <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
                 </div>
-                <span className="font-mono text-xs text-gray-400">beta_preview.json</span>
               </div>
               <div className="p-6 sm:p-8">
                 <div className="flex justify-between items-start mb-6">
@@ -195,7 +189,7 @@ export default function Home() {
             The Old Way vs. The CLUVO Way
           </h2>
           <p className="text-gray-600 dark:text-gray-300">
-            Stop relying on false positives. CLUVO uses behavioral markers to identify true intent before you write a single line of code.
+            Stop relying on false positives. <br></br>CLUVO uses behavioral markers to identify true intent before you write a single line of code.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
@@ -245,19 +239,19 @@ export default function Home() {
               Rigorous Validation Tools
             </h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-xl">
-              The engine that makes sure you never build for &quot;polite lies&quot; again.
+              The engine that makes sure you never build for <strong>&quot;polite lies&quot;</strong> again.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-card-dark p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-              <div className="w-10 h-10 rounded bg-primary text-white flex items-center justify-center mb-6 shadow-glow">
+              <div className="w-10 h-10 rounded border border-primary text-primary bg-white dark:bg-card-dark flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined">psychology_alt</span>
               </div>
               <h3 className="font-bold text-lg text-deep-jungle dark:text-white mb-3">The Mom Test Guardrails</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">
                 AI detects when you are pitching instead of listening. It flags leading questions and speculative &quot;future&quot; answers instantly.
               </p>
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 p-3 rounded text-[10px] text-red-500 flex gap-2 items-start">
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 p-3 rounded text-[10px] text-red-500 flex gap-2 items-center">
                 <span className="material-symbols-outlined text-sm">warning</span>
                 <span>Warning: &quot;Would you use...&quot; is speculative. Flagged.</span>
               </div>
@@ -271,13 +265,13 @@ export default function Home() {
                 Force yourself to be honest. Hypothesis cards stay &apos;Unverified&apos; until you tag specific timestamps from your interview videos as proof.
               </p>
               <div className="flex gap-2">
-                <div className="h-8 flex-1 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center">
+                <div className="h-12 flex-1 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center">
                   <span className="material-symbols-outlined text-xs text-gray-400">check_circle</span>
                 </div>
-                <div className="h-8 flex-1 bg-gray-100 dark:bg-gray-700 border border-dashed border-primary/50 flex items-center justify-center">
+                <div className="h-12 flex-1 bg-gray-100 dark:bg-gray-700 border border-dashed border-primary/50 flex items-center justify-center">
                   <span className="material-symbols-outlined text-xs text-primary">add</span>
                 </div>
-                <div className="h-8 flex-1 bg-gray-50 dark:bg-gray-800 rounded flex items-center justify-center">
+                <div className="h-12 flex-1 bg-gray-50 dark:bg-gray-800 rounded flex items-center justify-center">
                   <span className="material-symbols-outlined text-xs text-gray-300">lock</span>
                 </div>
               </div>
@@ -457,23 +451,18 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-white dark:bg-background-dark py-12 px-4 sm:px-8 border-t border-gray-100 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
           <div className="flex items-center">
             <Image 
               src="/logo.png" 
               alt="CLUVO Logo" 
               width={150} 
               height={40}
-              className="h-10 w-auto"
+              className="h-16 w-auto"
             />
           </div>
-          <div className="flex gap-8 font-mono text-xs text-gray-500">
-            <a className="hover:text-primary transition-colors" href="#">Pre-Seed Metrics</a>
-            <a className="hover:text-primary transition-colors" href="#">GDPR Compliance</a>
-            <a className="hover:text-primary transition-colors" href="#waitlist" onClick={handleScrollToWaitlist}>Request Access</a>
-          </div>
           <div className="font-mono text-[10px] text-gray-400">
-            © 2024 CLUVO Inc. All systems normal.
+            © 2026 CLUVO Inc. All systems normal.
           </div>
         </div>
       </footer>
