@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Airtable from 'airtable'
 
-// Configure Airtable
-const base = new Airtable({
-  apiKey: process.env.AIRTABLE_ACCESS_TOKEN,
-}).base(process.env.AIRTABLE_BASE_ID || '')
-
 export async function POST(request: NextRequest) {
+  // Configure Airtable à l'intérieur de la fonction pour éviter les erreurs au build
+  if (!process.env.AIRTABLE_ACCESS_TOKEN || !process.env.AIRTABLE_BASE_ID) {
+    console.error('Missing Airtable credentials')
+    return NextResponse.json(
+      { error: 'Server configuration error' },
+      { status: 500 }
+    )
+  }
+
+  const base = new Airtable({
+    apiKey: process.env.AIRTABLE_ACCESS_TOKEN,
+  }).base(process.env.AIRTABLE_BASE_ID)
   try {
     const body = await request.json()
     const { email, name, stage, description } = body
