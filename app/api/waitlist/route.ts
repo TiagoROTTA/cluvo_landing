@@ -2,19 +2,19 @@ import { NextRequest, NextResponse } from 'next/server'
 import Airtable from 'airtable'
 
 export async function POST(request: NextRequest) {
-  // Configure Airtable à l'intérieur de la fonction pour éviter les erreurs au build
-  if (!process.env.AIRTABLE_ACCESS_TOKEN || !process.env.AIRTABLE_BASE_ID) {
-    console.error('Missing Airtable credentials')
-    return NextResponse.json(
-      { error: 'Server configuration error' },
-      { status: 500 }
-    )
-  }
-
-  const base = new Airtable({
-    apiKey: process.env.AIRTABLE_ACCESS_TOKEN,
-  }).base(process.env.AIRTABLE_BASE_ID)
   try {
+    // Configure Airtable à l'intérieur de la fonction pour éviter les erreurs au build
+    if (!process.env.AIRTABLE_ACCESS_TOKEN || !process.env.AIRTABLE_BASE_ID) {
+      console.error('Missing Airtable credentials:', {
+        hasToken: !!process.env.AIRTABLE_ACCESS_TOKEN,
+        hasBaseId: !!process.env.AIRTABLE_BASE_ID,
+      })
+      return NextResponse.json(
+        { error: 'Server configuration error: Missing Airtable credentials' },
+        { status: 500 }
+      )
+    }
+
     const body = await request.json()
     const { email, name, stage, description } = body
 
@@ -40,8 +40,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Initialize Airtable
+    const base = new Airtable({
+      apiKey: process.env.AIRTABLE_ACCESS_TOKEN,
+    }).base(process.env.AIRTABLE_BASE_ID)
+
+    const tableName = process.env.AIRTABLE_TABLE_NAME || 'Waitlist'
+    
+    console.log('Attempting to create record in Airtable:', {
+      table: tableName,
+      email,
+      name,
+      stage,
+    })
+
     // Create record in Airtable
-    await base(process.env.AIRTABLE_TABLE_NAME || 'Waitlist').create([
+    const records = await base(tableName).create([
       {
         fields: {
           Email: email,
@@ -52,7 +66,12 @@ export async function POST(request: NextRequest) {
       },
     ])
 
-    console.log('Successfully added to Airtable:', { email, name, stage })
+    console.log('Successfully added to Airtable:', { 
+      recordId: records[0].id,
+      email, 
+      name, 
+      stage 
+    })
 
     return NextResponse.json(
       { 
@@ -61,10 +80,21 @@ export async function POST(request: NextRequest) {
       },
       { status: 200 }
     )
-  } catch (error) {
-    console.error('Error processing waitlist submission:', error)
+  } catch (error: any) {
+    console.error('Error processing waitlist submission:', {
+      message: error?.message,
+      statusCode: error?.statusCode,
+      errorDetails: error?.error,
+      stack: error?.stack,
+    })
+    
+    // Return more detailed error message in development
+    const errorMessage = process.env.NODE_ENV === 'development' 
+      ? `Failed to process submission: ${error?.message || 'Unknown error'}`
+      : 'Failed to process submission. Please try again later.'
+    
     return NextResponse.json(
-      { error: 'Failed to process submission' },
+      { error: errorMessage },
       { status: 500 }
     )
   }
