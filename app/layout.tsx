@@ -17,7 +17,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: 'Cluvo',
-  description: 'CLUVO is in private beta. Join our exclusive waitlist to turn customer conversations into investor-grade evidence and stop accepting polite lies.',
+  description: 'Turn customer conversations into investor-grade evidence. CLUVO helps founders validate product-market fit with real evidence and stop accepting polite lies.',
   viewport: 'width=device-width, initial-scale=1.0',
   icons: {
     icon: '/logo_tab.png',
