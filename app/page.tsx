@@ -51,9 +51,10 @@ export default function Home() {
     window.location.href = 'https://app.cluvoai.com'
   }
 
-  // Calculate yearly price (2 months free = 10 months of monthly price)
-  const monthlyPrice = 29
-  const yearlyPrice = monthlyPrice * 10 // $290/year instead of $348
+  // Calculate yearly price
+  const monthlyPrice = 29.99
+  const yearlyMonthlyPrice = 24.99
+  const yearlyPrice = yearlyMonthlyPrice * 12 // $299.88/year
 
   return (
     <>
@@ -366,7 +367,7 @@ export default function Home() {
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Everything you need to validate product-market fit with real evidence</p>
               <div className="flex items-baseline gap-2">
                 <span className="text-4xl font-mono font-bold text-deep-jungle dark:text-white">
-                  ${billingCycle === 'monthly' ? monthlyPrice : Math.round(yearlyPrice / 12)}
+                  ${billingCycle === 'monthly' ? monthlyPrice.toFixed(2) : yearlyMonthlyPrice.toFixed(2)}
                 </span>
                 <span className="text-gray-500 dark:text-gray-400 text-sm">
                   /{billingCycle === 'monthly' ? 'month' : 'month'}
@@ -374,7 +375,7 @@ export default function Home() {
               </div>
               {billingCycle === 'yearly' && (
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  ${yearlyPrice} billed annually (save ${monthlyPrice * 12 - yearlyPrice})
+                  ${yearlyPrice.toFixed(2)} billed annually (save ${(monthlyPrice * 12 - yearlyPrice).toFixed(2)})
                 </p>
               )}
             </div>
